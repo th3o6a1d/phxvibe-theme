@@ -1,41 +1,31 @@
 {{ define "main" }}
-
-{{ $Pages := .Pages }}
-
-{{ if .IsHome }}
-  {{ $Pages = where site.RegularPages "Type" "in" .Site.Params.mainSections }}
-{{ end }}
-
-{{ if .Site.Params.excerpts }}
-
-{{- range $Pages }}
-<article>
-  <header>
-    <h1>{{ .Title }}</h1>
-    {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 02, 2006" }}</time>{{ end }}
-  </header>
-  {{ .Summary }}
-  {{- if .Truncated }}
-    <div class="more"><a href="{{ .RelPermalink }}">read more</a></div>
-  {{- end }}
-</article>
-{{- end }}
-
-{{ else }}
-
-<article>
-  <header><h1>{{ .Title | default "Posts" | humanize }}</h1></header>
-  <ul class="archive">
-    {{- range $Pages }}
-    <li>
-      {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
-      <a href="{{ .Permalink }}">{{ .Title }}</a>
-    </li>
-    {{- end }}
-  </ul>
-  {{ .Content }}
-</article>
-
-{{ end }}
-
+<ul>
+    {{ $Pages := .Pages }}
+    {{ range $Pages.ByParam "datetime"}}
+    {{ $now := now.Format "2006-01-02" }}
+    {{ $start := (dateFormat "2006-01-02" .Params.datetime) }}
+    {{ if ge $start $now }}
+    <div>
+        {{ .Params.datetime | time.Format "1/02"}} {{ .Params.datetime | time.Format ":time_short"}}
+        <a href={{.Permalink}}>{{.Title}}</a> / {{ if .Params.support}}{{ .Params.support }}{{ end }} /
+        {{ if .Params.price}}{{ .Params.price }}{{ end }} / {{.Params.venue}}
+    </div>
+    {{ end }}
+    {{ end }}
+</ul>
+<!-- 
+<ul>
+    {{ range $.Site.Data.events}}
+    {{ range sort . "datetime" "asc" }}
+    <div>
+        {{ .datetime | time.Format ":date_short"}} {{ .datetime | time.Format ":time_short"}}
+        <a href="{{.details}}">{{.main}}
+            {{ if .support}}{{ .support }}{{ end }}
+        </a>
+        {{ if .price}} for {{.price}} {{ end }}
+        at {{.venue}}
+    </div>
+    {{ end }}
+    {{ end }}
+</ul> -->
 {{ end }}

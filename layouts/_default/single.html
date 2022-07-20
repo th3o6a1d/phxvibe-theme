@@ -2,9 +2,15 @@
 
 <article>
   <header>
-    <h1>{{ .Title }}</h1>
-    {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ .Date.Format "January 02, 2006" }}</time>{{ end }}
+    <h1><a href={{.Params.details}}>{{ .Title }}</a></h1>
+    <h3>{{ .Params.support }}</h3>
+<h3>{{ .Params.datetime | time.Format "1/02"}} {{ .Params.datetime | time.Format ":time_short"}}</h3>
+<h3>{{ .Params.venue }}</h3>
+
+ <p><a href={{.Params.details}}>Tickets / Details</a></p>
   </header>
+
+
   {{ .Content }}
 </article>
 
