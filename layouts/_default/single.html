@@ -1,5 +1,7 @@
 {{ define "main" }}
 
+
+
 <article>
   <header>
     <h1><a href={{.Params.details}}>{{ .Title }}</a></h1>
@@ -8,6 +10,7 @@
 <h3>{{ .Params.venue }}</h3>
 
  <p><a href={{.Params.details}}>Tickets / Details</a></p>
+ Last updated: {{ .Lastmod | time.Format "1/02 3:04 pm"}}
   </header>
 
 

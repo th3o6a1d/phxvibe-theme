@@ -1,5 +1,4 @@
 {{ define "main" }}
-<ul>
     {{ $Pages := .Pages }}
     {{ range $Pages.ByParam "datetime"}}
     {{ $now := now.Format "2006-01-02" }}
@@ -12,20 +11,4 @@
     </div>
     {{ end }}
     {{ end }}
-</ul>
-<!-- 
-<ul>
-    {{ range $.Site.Data.events}}
-    {{ range sort . "datetime" "asc" }}
-    <div>
-        {{ .datetime | time.Format ":date_short"}} {{ .datetime | time.Format ":time_short"}}
-        <a href="{{.details}}">{{.main}}
-            {{ if .support}}{{ .support }}{{ end }}
-        </a>
-        {{ if .price}} for {{.price}} {{ end }}
-        at {{.venue}}
-    </div>
-    {{ end }}
-    {{ end }}
-</ul> -->
 {{ end }}
