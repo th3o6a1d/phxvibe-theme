@@ -25,9 +25,8 @@
 </header>
 <body>
   <div class="container">
-    {{ .Content }}
-{{ block "main" . }}
-{{ end }}
+{{- block "main" . }}
+{{- end }}
 <div>
 </body>
 </html>

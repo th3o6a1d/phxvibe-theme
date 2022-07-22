@@ -1,5 +1,6 @@
 {{ define "main" }}
 <h3>{{ .Title }}</h3>
+{{ .Content }}
 {{ range .Pages.ByParam "datetime" }}
 <div>
     {{ if isset .Params "datetime" }}
