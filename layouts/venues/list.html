@@ -7,6 +7,8 @@
     {{ .Params.datetime | time.Format "1/02 3:04 pm"}}
     {{end}}
     <a href={{.Permalink}}>{{ .Title }}</a>
+    / {{ if .Params.support}}{{ .Params.support }}{{ end }} /
+        {{ if .Params.price}}{{ .Params.price }}{{ end }}
 </div>
 {{ end }}
 {{ end }}
