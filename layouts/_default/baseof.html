@@ -10,11 +10,6 @@
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/index.css">
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="alternate" type="application/rss+xml" href="{{ with .OutputFormats.Get "RSS" }}{{ .RelPermalink }}{{ end }}" title="{{ .Site.Title }}">
-{{- if or .Params.math .Site.Params.math }}
-<link rel="stylesheet" href="{{ .Site.BaseURL }}katex/katex.min.css">
-<script defer src="{{ .Site.BaseURL }}katex/katex.min.js"></script>
-<script defer src="{{ .Site.BaseURL }}katex/contrib/auto-render.min.js" onload="renderMathInElement(document.body)"></script>
-{{- end }}
 
 <header>
   {{ if not (gt (len .Site.Menus) 1) }}
@@ -28,11 +23,11 @@
     </nav>
   {{ end }}
 </header>
-
 <body>
   <div class="container">
-{{- block "main" . }}
-{{- end }}
+    {{ .Content }}
+{{ block "main" . }}
+{{ end }}
 <div>
 </body>
 </html>

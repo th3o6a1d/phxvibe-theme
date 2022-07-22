@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h3>{{ .Title }}</h3>
+{{ range .Pages.ByParam "datetime" }}
+<div>
+    {{ if isset .Params "datetime" }}
+    {{ .Params.datetime | time.Format "1/02 3:04 pm"}}
+    {{end}}
+    <a href={{.Permalink}}>{{ .Title }}</a>
+</div>
+{{ end }}
+{{ end }}
