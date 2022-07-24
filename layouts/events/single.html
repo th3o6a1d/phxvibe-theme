@@ -4,6 +4,20 @@
 <h2>{{ .Params.support }}</h2>
 <h3>{{ .Date | time.Format "1/02 3:04 pm"}}</h3>
 <p><a href={{.Params.details}}>Tickets / Details</a></p>
-Last updated: {{ .Lastmod | time.Format "1/02 3:04 pm"}}
+Last updated: {{ .Lastmod | time.Format "1/02"}}
 {{ .Content }}
+
+<div hidden>
+        BEGIN:VCALENDAR
+        CALSCALE:GREGORIAN
+        VERSION:2.0
+        X-WR-CALNAME:{{.Title}}
+        METHOD:PUBLISH
+        BEGIN:VEVENT
+        SUMMARY:CONCERT
+        DTSTART:{{ .Date }}
+        DTEND:{{ .Date }}
+        END:VEVENT
+        END:VCALENDAR
+    </div>
 {{ end }}

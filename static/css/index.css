@@ -116,8 +116,9 @@ header time {
 }
 
 hr {
-  border: .5px solid rgba(144, 145, 148, 0.3);
-  margin: 1.5px;
+  border: .5px solid rgba(144, 145, 248, 0.1);
+  margin: 0px;
+  margin-right: 5px;
 }
 
 article:not(:last-of-type) {
