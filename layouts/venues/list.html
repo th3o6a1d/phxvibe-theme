@@ -1,14 +1,13 @@
 {{ define "main" }}
 <h3>{{ .Title }}</h3>
 {{ .Content }}
-{{ range .Pages.ByParam "datetime" }}
-<div>
-    {{ if isset .Params "datetime" }}
-    {{ .Params.datetime | time.Format "1/02 3:04 pm"}}
-    {{end}}
-    <a href={{.Permalink}}>{{ .Title }}</a>
-    / {{ if .Params.support}}{{ .Params.support }}{{ end }} /
-        {{ if .Params.price}}{{ .Params.price }}{{ end }}
-</div>
+{{ range .Pages.ByParam "Date" }}
+{{ if .Params.main}}
+
+{{ template "partials/event.html" . }}
+
+{{ else }}
+<div><a href={{.Permalink}}>{{ .Title }}</a></div>
+{{ end }}
 {{ end }}
 {{ end }}

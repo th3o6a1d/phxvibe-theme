@@ -1,18 +1,19 @@
 {{ define "main" }}
 
-    {{/*
-    {{ range where .Site.RegularPages ".Params.featured" true }}
-    */}}
-
-    {{ range .Site.RegularPages.ByParam "datetime"}}
-    {{ $now := now.Format "2006-01-02" }}
-    {{ $start := (dateFormat "2006-01-02" .Params.datetime) }}
-    {{ if ge $start $now }}
-    <div>
-        {{ .Params.datetime | time.Format "1/02 3:04 pm"}}
-        <a href={{.Permalink}}>{{.Title}}</a> / {{ if .Params.support}}{{ .Params.support }}{{ end }} /
-        {{ if .Params.price}}{{ .Params.price }}{{ end }} / <a href="venues/{{urlize .Params.venues}}">{{.Params.venues}}</a>
+    <div class="featured">
+    {{ $f := (where .Site.RegularPages ".Params.featured" true)}}
+    {{ range $f.ByParam "Date" }}
+    {{ template "partials/event.html" . }}
+    {{ end }}
     </div>
-    {{ end }}
-    {{ end }}
+    <div class="non-featured">
+    {{ $p := (where .Site.RegularPages "Type" "events") }}
+    {{ $p := $p.ByParam "Date"}}
+    {{ $p := (where $p "Date" ">" now)}}
+    {{ $p := .Paginate $p}}
+    {{ range $p.Pages }}
+    {{ template "partials/event.html" . }}
+    {{end}}
+    {{ template "_internal/pagination.html" . }}
+    </div>
 {{ end }}
