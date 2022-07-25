@@ -1,19 +1,25 @@
 {{ define "main" }}
 
     <div class="featured">
+        <i>featured</i>
     {{ $f := (where .Site.RegularPages ".Params.featured" true)}}
     {{ range $f.ByParam "Date" }}
     {{ template "partials/event.html" . }}
     {{ end }}
     </div>
     <div class="non-featured">
+    
     {{ $p := (where .Site.RegularPages "Type" "events") }}
     {{ $p := $p.ByParam "Date"}}
     {{ $p := (where $p "Date" ">" now)}}
-    {{ $p := .Paginate $p}}
-    {{ range $p.Pages }}
+    {{/*
+        {{ $p := .Paginate $p}}
+        {{ template "_internal/pagination.html" . }}
+        {{ range $p.Pages }}
+    */}}
+    {{ range $p }}
     {{ template "partials/event.html" . }}
     {{end}}
-    {{ template "_internal/pagination.html" . }}
+    {{/*{{ template "_internal/pagination.html" . }}*/}}
     </div>
 {{ end }}

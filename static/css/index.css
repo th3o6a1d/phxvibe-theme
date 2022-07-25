@@ -37,11 +37,17 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 5px;
+  margin-left: 5px;
   margin-top: 5px;
 }
 
 .non-featured {
-  margin-left: 5px;
+  margin-left: 10px;
+}
+
+.pagination {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .pagination ul, li {
