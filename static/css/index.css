@@ -31,9 +31,10 @@ body {
 }
 
 .featured {
-  background: rgb(200,250,250);
   border-radius: 1px;
   padding-left: 5px;
+
+  border: 1px solid black;
   padding-top: 5px;
   padding-bottom: 5px;
   margin-bottom: 5px;
