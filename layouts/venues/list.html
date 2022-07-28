@@ -1,13 +1,10 @@
 {{ define "main" }}
 <h3>{{ .Title }}</h3>
 {{ .Content }}
-
-{{ if .Params.main}}
 {{ range .Pages.ByParam "Date" }}
+{{ if .Params.main}}
 {{ template "partials/event.html" . }}
-{{ end }}
 {{ else }}
-{{ range sort .Pages "Title"}}
 <div><a href={{.Permalink}}>{{ .Title }}</a></div>
 {{ end }}
 {{ end }}
